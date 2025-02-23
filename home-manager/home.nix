@@ -7,11 +7,13 @@
     nixvim.homeManagerModules.nixvim
     catppuccin.homeManagerModules.catppuccin
 
-    ./alacritty/_default.nix
-    ./nixvim/_default.nix
-    ./sway/_default.nix
-    ./tmux/_default.nix
-    ./zsh/_default.nix
+    ./alacritty
+    ./fzf/_default.nix
+    ./git
+    ./nixvim
+    ./sway
+    ./tmux
+    ./zsh
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -48,12 +50,6 @@
   home.sessionVariables = { };
 
   programs.home-manager.enable = true;
-  programs.git = {
-    enable = true;
-    userName = "gkits";
-    userEmail = "gkitsikoudis@gmx.de";
-    extraConfig = { init.defaultBranch = "main"; };
-  };
 
   home.stateVersion = "24.11";
 }
