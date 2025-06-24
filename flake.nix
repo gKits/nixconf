@@ -11,22 +11,23 @@
     };
 
     nixvim.url = "github:nix-community/nixvim";
-    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+      unstable = inputs.unstable.legacyPackages.${system};
       inherit (self) outputs;
     in {
       nixosConfigurations.framework13 = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs outputs; };
-        modules = [ ./hosts/configuration.nix ];
+        modules = [ ./hosts/framework13/configuration.nix ];
       };
 
-      homeConfigurations.gkits = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
-        extraSpecialArgs = { inherit inputs outputs; };
+      homeConfigurations.home = home-manager.lib.homeManagerConfiguration {
+        pkgs = pkgs;
+        extraSpecialArgs = { inherit inputs outputs unstable; };
         modules = [ ./home-manager/home.nix ];
       };
 

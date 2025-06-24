@@ -1,11 +1,11 @@
 { pkgs, lib, ... }: {
   imports = [
+    ./kanshi.nix
+    ./mako.nix
     ./sway.nix
+    ./swaylock.nix
     ./waybar.nix
     ./wofi.nix
-    ./swaylock.nix
-    ./mako.nix
-    ./kanshi.nix
   ];
 
   home.packages = with pkgs; [

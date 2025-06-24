@@ -1,14 +1,13 @@
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{ inputs, unstable, pkgs, ... }: {
 
   home.username = "gkits";
   home.homeDirectory = "/home/gkits";
 
   imports = with inputs; [
     nixvim.homeManagerModules.nixvim
-    catppuccin.homeManagerModules.catppuccin
 
     ./alacritty
-    ./fzf/_default.nix
+    ./fzf
     ./git
     ./nixvim
     ./sway
@@ -18,17 +17,20 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  catppuccin.enable = true;
-
   home.packages = with pkgs; [
+    arduino
+    arduino-ide
     fastfetch
     cmake
     firefox
     gcc
     gnumake
-    go
-    golangci-lint
-    golangci-lint-langserver
+    unstable.go_1_24
+    air
+    go-task
+    templ
+    unstable.golangci-lint
+    unstable.golangci-lint-langserver
     lua
     luarocks
     nerdfonts
@@ -39,8 +41,18 @@
     rustup
     ungoogled-chromium
     whatsapp-for-linux
+    yubioath-flutter
 
-    inputs.unstable.cura-appimage
+    python3
+
+    unzip
+    krita
+
+    unstable.cura-appimage
+
+    forgejo-cli
+
+    unstable.hugo
 
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"

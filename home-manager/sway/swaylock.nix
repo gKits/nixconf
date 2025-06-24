@@ -1,4 +1,4 @@
-{
+{ lib, pkgs, ... }: {
   programs.swaylock = {
     enable = true;
     settings = {
@@ -33,5 +33,16 @@
       caps-lock-bs-hl-color = "ee2e24FF";
       separator-color = "231f2000";
     };
+  };
+  services.swayidle = {
+    enable = true;
+    timeouts = [{
+      timeout = 180;
+      command = lib.getExe pkgs.swaylock;
+    }];
+    events = [{
+      event = "before-sleep";
+      command = lib.getExe pkgs.swaylock;
+    }];
   };
 }

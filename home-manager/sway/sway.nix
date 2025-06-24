@@ -18,7 +18,17 @@ in {
 
       modifier = mod;
 
-      input = { "*" = { xkb_variant = "de(us)"; }; };
+      input = {
+        "*" = {
+          xkb_layout = "de";
+          xkb_variant = "us";
+        };
+      };
+
+      keybindings = lib.mkOptionDefault {
+        "${mod}+less" = "move workspace to output left";
+        "${mod}+greater" = "move workspace to output right";
+      };
     };
   };
 }

@@ -107,7 +107,7 @@
         };
       };
       "clock#3" = {
-        format = "{:%H:%m }";
+        format = "{:%H:%M }";
         tooltip = false;
       };
 

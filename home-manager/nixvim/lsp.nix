@@ -12,15 +12,16 @@
           };
           lspBuf = {
             gd = "definition";
-            gD = "references";
+            # gD = "references";
             gt = "type_definition";
-            gi = "implementation";
+            # gi = "implementation";
             K = "hover";
             "<leader>rn" = "rename";
           };
         };
 
         servers = {
+          dockerls.enable = true;
           golangci_lint_ls.enable = true;
           gopls.enable = true;
           html.enable = true;
